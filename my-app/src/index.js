@@ -383,61 +383,136 @@ import Remarkable from 'remarkable';
 //========================================
 // 
 //========================================
-class App extends React.Component{
-  constructor(){
-    super();
-    this.state = {
-      data:
-      [
-        {
-          "id": 1,
-          "name": "Teo",
-          "age": "20"
-        },
-        {
-          "id": 2,
-          "name": "Teohiho",
-          "age": "21"
-        },
-        {
-          "id": 3,
-          "name": "Thu Hien",
-          "age": "22"
-        }
-      ]
-    }
-  }
-  render(){
-    return(
-      <div>
-        <Header />
-        <table>
-          <tbody>
-            {this.state.data.map(person => <TableRow  data = {person} />)}
-          </tbody>
-        </table>
-      </div>
-    );
-  }
-}
-class Header extends React.Component{
-  render(){
-    return(
-      <div>
-        <h1>It's the Header</h1>
-      </div>
-    );
-  }
-}
-class TableRow extends React.Component{
-  render(){
-    return(
-      <tr>
-        <td>{this.props.data.id}</td>
-        <td>{this.props.data.name}</td>
-        <td>{this.props.data.age}</td>
-      </tr>
-    );
-  }
-}
-ReactDOM.render(<App/>, document.getElementById("root"));
+// class App extends React.Component{
+//   constructor(){
+//     super();
+//     this.state = {
+//       data:
+//       [
+//         {
+//           "id": 1,
+//           "name": "Teo",
+//           "age": "20"
+//         },
+//         {
+//           "id": 2,
+//           "name": "Teohiho",
+//           "age": "21"
+//         },
+//         {
+//           "id": 3,
+//           "name": "Thu Hien",
+//           "age": "22"
+//         }
+//       ]
+//     }
+//   }
+//   render(){
+//     return(
+//       <div>
+//         <Header />
+//         <table>
+//           <tbody>
+//             {this.state.data.map(person => <TableRow  data = {person} />)}
+//           </tbody>
+//         </table>
+//       </div>
+//     );
+//   }
+// }
+// class Header extends React.Component{
+//   render(){
+//     return(
+//       <div>
+//         <h1>It's the Header</h1>
+//       </div>
+//     );
+//   }
+// }
+// class TableRow extends React.Component{
+//   render(){
+//     return(
+//       <tr>
+//         <td>{this.props.data.id}</td>
+//         <td>{this.props.data.name}</td>
+//         <td>{this.props.data.age}</td>
+//       </tr>
+//     );
+//   }
+// }
+// ReactDOM.render(<App/>, document.getElementById("root"));
+//========================================
+// Using Props
+// When we neef immutable data in our component, 
+// we can just add props to reactDOM.render()
+//========================================
+// class App extends React.Component{
+//   render(){
+//     return(
+//       <div>
+//         <h1>{this.props.a}</h1>
+//         <h1>{this.props.b}</h1>
+//       </div>
+//     );
+//   }
+// }
+// ReactDOM.render(<App a="Header from props" b="Content from props" />, document.getElementById("root"));
+//========================================
+// Default Props
+//========================================
+// class App extends React.Component {
+//    render() {
+//       return (
+//          <div>
+//             <h1>{this.props.headerProp}</h1>
+//             <h2>{this.props.contentProp}</h2>
+//          </div>
+//       );
+//    }
+// }
+// App.defaultProps = {
+//    headerProp: "Header from props...",
+//    contentProp:"Content from props..."
+// }
+
+// ReactDOM.render(<App/>, document.getElementById('root'));
+//========================================
+// State and Props
+//========================================
+// class App extends React.Component{
+//   constructor(props){
+//     super(props);
+//     this.state = {
+//       header: "Header from props",
+//       content: "Content from props"
+//     }
+//   }
+//   render(){
+//     return(
+//       <div>
+//         <Header headerProp = {this.state.header} />
+//         <Content contentProp = {this.state.content} />
+//       </div>
+//     );
+//   }
+// }
+
+// class Header extends React.Component{
+//   render(){
+//     return(
+//       <div>
+//         <h1>{this.props.headerProp}</h1>
+//       </div>
+//     );
+//   }
+// }
+// class Content extends React.Component {
+//    render() {
+//       return (
+//          <div>
+//             <h2>{this.props.contentProp}</h2>
+//          </div>
+//       );
+//    }
+// }
+// ReactDOM.render(<App/>, document.getElementById('root'));
