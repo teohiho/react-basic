@@ -333,51 +333,111 @@ import Remarkable from 'remarkable';
 //========================================
 // Dong Ho Bam Gio
 //========================================
- // Get Root Element
-const rootElement = document.getElementById('root');
-// Stopwatch Component
-class Stopwatch extends React.Component{
-    constructor(props){
-        super(props)
-        this.state={
-            timer:0,
-            running:false,
-            time:''
-        }
-    }
-    handelStart= ()=>{
-        const timeNow=Date.now()-this.state.timer;
-        if(this.state.running){
-            clearInterval(this.state.time);
-            this.setState({running:false});
-        }else{
-            this.setState({time:setInterval(()=>{this.setState({timer:Date.now()-timeNow})},0)});
-            this.setState({running:true });
-        }
-    }
-    handelClear= ()=>{
-        this.setState({timer:0, running:false});
-        clearInterval(this.state.time);
-    }
-    render(){
-        return(
-            <div className={"text-center"}>
-                <label className={" px-4 py-4 text-center"}>{`${this.state.timer} ms`}</label> 
-                <div className={"px-4 py-4 my-4 w-full text-center"}>
-                    <button onClick={this.handelStart} className={`rounded bg-${this.state.running?'red':'green'} px-4 py-2 mx-2 w-1/3`}>{this.state.running?'Stop':'Start'}</button>
-                    <button onClick={this.handelClear} className={"rounded bg-grey px-4 py-2 mx-2 w-1/3"}>{"Clear"}</button> 
-                </div>                      
-            </div>
-        )
-    }
-}
-// App Component
-const App = ()=>{
-    return(
-        <div className={"bg-white rounded-lg mx-auto shadow-lg  max-w-sm my-6 px-6 py-4"}>
-            <Stopwatch/>
-        </div>
-    )   
-}
+// const rootElement = document.getElementById('root');
+// // Stopwatch Component
+// class Stopwatch extends React.Component{
+//     constructor(props){
+//         super(props)
+//         this.state={
+//             timer:0,
+//             running:false,
+//             time:''
+//         }
+//     }
+//     handelStart= ()=>{
+//         const timeNow=Date.now()-this.state.timer;
+//         if(this.state.running){
+//             clearInterval(this.state.time);
+//             this.setState({running:false});
+//         }else{
+//             this.setState({time:setInterval(()=>{this.setState({timer:Date.now()-timeNow})},0)});
+//             this.setState({running:true });
+//         }
+//     }
+//     handelClear= ()=>{
+//         this.setState({timer:0, running:false});
+//         clearInterval(this.state.time);
+//     }
+//     render(){
+//         return(
+//             <div className={"text-center"}>
+//                 <label className={" px-4 py-4 text-center"}>{`${this.state.timer} ms`}</label> 
+//                 <div className={"px-4 py-4 my-4 w-full text-center"}>
+//                     <button onClick={this.handelStart} className={`rounded bg-${this.state.running?'red':'green'} px-4 py-2 mx-2 w-1/3`}>{this.state.running?'Stop':'Start'}</button>
+//                     <button onClick={this.handelClear} className={"rounded bg-grey px-4 py-2 mx-2 w-1/3"}>{"Clear"}</button> 
+//                 </div>                      
+//             </div>
+//         )
+//     }
+// }
+// // App Component
+// const App = ()=>{
+//     return(
+//         <div className={"bg-white rounded-lg mx-auto shadow-lg  max-w-sm my-6 px-6 py-4"}>
+//             <Stopwatch/>
+//         </div>
+//     )   
+// }
 
-ReactDOM.render(<App/>, rootElement);
+// ReactDOM.render(<App/>, rootElement);
+//========================================
+// 
+//========================================
+class App extends React.Component{
+  constructor(){
+    super();
+    this.state = {
+      data:
+      [
+        {
+          "id": 1,
+          "name": "Teo",
+          "age": "20"
+        },
+        {
+          "id": 2,
+          "name": "Teohiho",
+          "age": "21"
+        },
+        {
+          "id": 3,
+          "name": "Thu Hien",
+          "age": "22"
+        }
+      ]
+    }
+  }
+  render(){
+    return(
+      <div>
+        <Header />
+        <table>
+          <tbody>
+            {this.state.data.map(person => <TableRow  data = {person} />)}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+}
+class Header extends React.Component{
+  render(){
+    return(
+      <div>
+        <h1>It's the Header</h1>
+      </div>
+    );
+  }
+}
+class TableRow extends React.Component{
+  render(){
+    return(
+      <tr>
+        <td>{this.props.data.id}</td>
+        <td>{this.props.data.name}</td>
+        <td>{this.props.data.age}</td>
+      </tr>
+    );
+  }
+}
+ReactDOM.render(<App/>, document.getElementById("root"));
